@@ -1,0 +1,132 @@
+*,
+::before,
+::after {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 12px;
+}
+
+.container {
+    border: 1px solid #f00;
+    padding: 15px;
+
+    .projectName {
+        background-color: #333;
+        color: #fff;
+        padding: 5px;
+        text-align: center;
+    }
+
+    fieldset {
+        margin-top: 30px;
+
+        legend {
+            margin-left: 15px;
+            padding: 5px;
+            padding-left: 10px;
+            padding-right: 10px;
+            background-color: #333;
+            color: #fff;
+            border-radius: 3px;
+        }
+
+        .rawData {
+            height: 120px;
+            padding: 15px;
+            overflow: auto;
+        }
+
+        .singleData {
+            height: 200px;
+            position: relative;
+            // border: 1px solid #f00;
+
+            .indexNumber {
+                font-weight: bolder;
+                height: 30px;
+                display: flex;
+                align-items: center;
+            }
+
+            .singleDataTable {
+                // border: 1px solid #f0f;
+                width: 100%;
+                table-layout: fixed;
+                // height: calc(100% - 30px);
+
+                thead {
+                    tr {
+                        th {
+                            font-size: 10px;
+                            background-color: #333;
+                            color: #fff;
+                            padding: 5px;
+                            overflow: auto;
+                        }
+                    }
+                }
+
+                tbody {
+                    tr {
+                        td {
+                            background-color: aliceblue;
+                            text-align: center;
+                            padding: 5px;
+                        }
+                    }
+                }
+            }
+
+            .previous,
+            .next {
+                position: absolute;
+                bottom: 0;
+                width: 49%;
+                height: 30px;
+                background-color: #333;
+                color: #fff;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                overflow: hidden;
+                border-radius: 3px;
+            }
+            .previous {
+                left: 0;
+            }
+            .next {
+                right: 0;
+            }
+        }
+
+        .statisticalData {
+            // min-height: 200px;
+
+            table {
+                width: 100%;
+                table-layout: fixed;
+                thead {
+                    tr {
+                        th {
+                            background-color: #333;
+                            color: #fff;
+                            padding: 5px;
+                            overflow: auto;
+                        }
+                    }
+                }
+                tbody {
+                    tr {
+                        td {
+                            text-align: center;
+                            padding: 5px;
+                            border: 1px solid #000;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
