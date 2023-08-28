@@ -1,0 +1,29 @@
+.container {
+    // border: 1px solid #f00;
+
+    table {
+        width: 100%;
+        table-layout: fixed;
+        border-collapse: collapse;
+
+        thead {
+            tr {
+                th {
+                    background-color: #000;
+                    color: #fff;
+                    padding: 5px;
+                    overflow: auto;
+                }
+            }
+        }
+
+        tbody {
+            tr {
+                td {
+                    border: 1px solid #000;
+                    text-align: center;
+                }
+            }
+        }
+    }
+}

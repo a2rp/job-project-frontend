@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import data from "./files/wine-data.json";
 import styles from "./styles.module.scss";
 import StatisticalData from "./components/StatisticalData";
+import Gamma from "./components/gamma";
 
 function App() {
     // complete data
@@ -78,7 +79,16 @@ function App() {
                     <StatisticalData wineData={wineData} wineDataKeys={wineDataKeys} />
                 </div>
             </fieldset>
-        </div >
+
+            <fieldset>
+                <legend>Gamma</legend>
+                <div className={styles.gamma}>
+                    <Gamma wineData={wineData} wineDataKeys={wineDataKeys} />
+                </div>
+            </fieldset>
+
+            <div style={{ marginTop: "100px" }}></div>
+        </div>
     );
 }
 
