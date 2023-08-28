@@ -1,3 +1,9 @@
+
+
+<img width="959" alt="Screenshot 2023-08-28 144538" src="https://github.com/a2rp/job-project-frontend/assets/5670738/b80722bd-1afb-4e79-a347-1a152be98104">
+
+<img width="959" alt="Screenshot 2023-08-28 144557" src="https://github.com/a2rp/job-project-frontend/assets/5670738/718ab0ad-0b18-4bcb-8570-01f9e7eb9893">
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
