@@ -22,7 +22,9 @@
         "test": "react-scripts test",
         "eject": "react-scripts eject",
         "purgecss": "node ./src/scripts/purgecss.js",
-        "postbuild": "npm run purgecss"
+        "postbuild": "npm run purgecss",
+        "predeploy": "npm run build",
+        "deploy": "npx --yes gh-pages -d build -b gh-pages"
     },
     "eslintConfig": {
         "extends": [
