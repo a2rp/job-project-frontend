@@ -1,80 +1,33 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useMemo } from "react";
 import styles from "./styles.module.scss";
 
-const Gamma = ({ wineData, wineDataKeys }) => {
-    // console.log(wineData);
-    wineDataKeys.push("gamma");
+const getMedian = (values) => {
+    const sortedValues = [...values].sort((a, b) => a - b);
+    const middle = Math.floor(sortedValues.length / 2);
+    return sortedValues.length % 2 === 0
+        ? (sortedValues[middle - 1] + sortedValues[middle]) / 2
+        : sortedValues[middle];
+};
 
-    const [gamma, setGamma] = useState([]);
+const getMode = (values) => {
+    const counts = new Map();
+    values.forEach((value) => counts.set(value, (counts.get(value) || 0) + 1));
+    return values.reduce((mode, value) => counts.get(value) > counts.get(mode) ? value : mode, values[0]);
+};
 
-    // gamma calculation
-    useEffect(() => {
-        const gammaData = [];
-        wineData.map(data => {
-            const gammaValue = (data.Ash * data.Hue) / data.Magnesium;
-            data.gamma = gammaValue;
-            gammaData.push(gammaValue);
-        });
-        // console.log(gammaData);
-        // console.log(wineData);
-        setGamma(prev => [...gammaData]);
-    }, []);
-    useEffect(() => {
-        // console.log("gamma");
-        // console.log(gamma);
-    }, [gamma]);
-
-    // calculate mean
-    const gammaMeanRef = useRef(null);
-    const gammaMedianRef = useRef(null);
-    const gammaModeRef = useRef(null);
-
-    let countAll = 0;
-    useEffect(() => {
-        let gammaMean = 0;
-        wineData.forEach(item => {
-            gammaMean += item[wineDataKeys[13]];
-            ++countAll;
-        });
-        gammaMeanRef.current.innerText = (parseFloat(gammaMean) / countAll).toFixed(3);
-    });
-
-    // calculate median
-    useEffect(() => {
-        const median = arr => {
-            const mid = Math.floor(arr.length / 2),
-                nums = [...arr].sort((a, b) => a - b);
-            return arr.length % 2 !== 0 ? nums[mid] : (nums[mid - 1] + nums[mid]) / 2;
-        };
-        gammaMedianRef.current.innerText = median(gamma).toFixed(3);
-    }, [gamma]);
-
-    // calculate mode
-    useEffect(() => {
-        const mode = a =>
-            Object.values(
-                a.reduce((count, e) => {
-                    if (!(e in count)) {
-                        count[e] = [0, e];
-                    }
-
-                    count[e][0]++;
-                    return count;
-                }, {})
-            ).reduce((a, v) => v[0] < a[0] ? a : v, [0, null])[1];
-        ;
-        gammaModeRef.current.innerText = parseFloat(mode(gamma)).toFixed(3);
-    }, [gamma]);
-
-
+const Gamma = ({ wineData }) => {
+    const gamma = useMemo(() => wineData.map(({ Ash, Hue, Magnesium }) => (Ash * Hue) / Magnesium), [wineData]);
+    const gammaMean = gamma.reduce((total, value) => total + value, 0) / gamma.length;
+    const gammaMedian = getMedian(gamma);
+    const gammaMode = getMode(gamma);
 
     return (
         <div className={styles.container}>
-            <div>Gamma Mean: <span ref={gammaMeanRef}></span></div>
-            <div>Gamma Median: <span ref={gammaMedianRef}></span></div>
-            <div>Gamma Mode: <span ref={gammaModeRef}></span></div>
+            <div>Gamma mean: <strong>{gammaMean.toFixed(3)}</strong></div>
+            <div>Gamma median: <strong>{gammaMedian.toFixed(3)}</strong></div>
+            <div>Gamma mode: <strong>{gammaMode.toFixed(3)}</strong></div>
         </div>
-    )
-}
+    );
+};
 
-export default Gamma
+export default Gamma;

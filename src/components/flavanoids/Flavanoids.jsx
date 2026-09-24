@@ -1,13 +1,9 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import styles from "./styles.module.scss";
 
 const Flavanoids = ({ wineData, wineDataKeys }) => {
-    useEffect(() => {
-        console.log(wineData);
-
-        const result = wineData.map(({ Flavanoids }) => ({ Flavanoids }));
-        console.log(result);
-    }, []);
+    const flavanoidValues = wineData.map(({ Flavanoids }) => Flavanoids);
+    const flavanoidMean = flavanoidValues.reduce((total, value) => total + value, 0) / flavanoidValues.length;
 
     return (
         <div className={styles.container}>
@@ -23,7 +19,7 @@ const Flavanoids = ({ wineData, wineDataKeys }) => {
                 <tbody>
                     <tr>
                         <td>Mean</td>
-
+                        <td colSpan={wineDataKeys.length}>{flavanoidMean.toFixed(3)}</td>
                     </tr>
                 </tbody>
             </table>

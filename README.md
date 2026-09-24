@@ -1,101 +1,45 @@
+# Wine Statistics Explorer
 
+A React dashboard for exploring a wine dataset through raw records, single-record navigation, and statistical summaries.
 
-<img width="959" alt="Screenshot 2023-08-28 144538" src="https://github.com/a2rp/job-project-frontend/assets/5670738/b80722bd-1afb-4e79-a347-1a152be98104">
+![Wine Statistics Explorer](screenshot.png)
 
-<img width="959" alt="Screenshot 2023-08-28 144557" src="https://github.com/a2rp/job-project-frontend/assets/5670738/718ab0ad-0b18-4bcb-8570-01f9e7eb9893">
+## Features
 
-# Getting Started with Create React App
+- Browse the complete raw dataset
+- Inspect individual records with buttons or keyboard navigation
+- Compare minimum, maximum, mean, median, and mode values
+- Review calculated Gamma measures
+- Responsive layout with accessible navigation and footer links
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Tech stack
 
-## Available Scripts
+- React 18
+- Create React App
+- Sass modules
+- React Icons
 
-In the project directory, you can run:
+## Run locally
 
-### `yarn start`
+```bash
+npm install
+npm start
+```
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Create a production build with `npm run build`.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Live URL
 
-### `yarn test`
+[https://a2rp.github.io/job-project-frontend/](https://a2rp.github.io/job-project-frontend/)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Future prospects
 
-### `yarn build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- Add filters and sorting for individual wine measures
+- Add charts for comparing distributions
+- Add downloadable summary reports
 
 ## Links
 
-- Portfolio: [https://www.ashishranjan.net](https://www.ashishranjan.net)
-- GitHub: [https://github.com/a2rp](https://github.com/a2rp)
-- CodePen: [https://codepen.io/ash1198](https://codepen.io/ash1198)
-- LinkedIn: [https://www.linkedin.com/in/aashishranjan](https://www.linkedin.com/in/aashishranjan)
-- Facebook: [https://www.facebook.com/theash.ashish/](https://www.facebook.com/theash.ashish/)
-- YouTube: [https://www.youtube.com/@ashishranjan-ashz?sub_confirmation=1](https://www.youtube.com/@ashishranjan-ashz?sub_confirmation=1)
-- Email: [ash.ranjan09@gmail.com](mailto:ash.ranjan09@gmail.com)
-
-## Support
-
-- Support: [https://a2rp-donation-page.netlify.app/](https://a2rp-donation-page.netlify.app/)
-- Buy Me A Coffee: [https://buymeacoffee.com/a2rp](https://buymeacoffee.com/a2rp)
-- Patreon: [https://patreon.com/a2rp](https://patreon.com/a2rp)
-<!-- Project links -->
-
-## Links
-
-- Live: [https://a2rp.github.io/job-project-frontend/](https://a2rp.github.io/job-project-frontend/)
-- Repository: [https://github.com/a2rp/job-project-frontend](https://github.com/a2rp/job-project-frontend)
 - Portfolio: [https://www.ashishranjan.net/](https://www.ashishranjan.net/)
 - GitHub: [https://github.com/a2rp](https://github.com/a2rp)
 - CodePen: [https://codepen.io/ash1198](https://codepen.io/ash1198)

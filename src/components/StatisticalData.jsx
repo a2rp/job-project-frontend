@@ -1,47 +1,23 @@
 import React, { useEffect, useRef, useState } from 'react'
 
 const StatisticalData = ({ wineData, wineDataKeys }) => {
-    // statistical data
-    // mimimum value
-    Array.prototype.hasMin = function (attrib) {
-        const checker = (o, i) => typeof (o) === 'object' && o[i]
-        return (this.length && this.reduce(function (prev, curr) {
-            const prevOk = checker(prev, attrib);
-            const currOk = checker(curr, attrib);
-            if (!prevOk && !currOk) return {};
-            if (!prevOk) return curr;
-            if (!currOk) return prev;
-            return prev[attrib] < curr[attrib] ? prev : curr;
-        })) || null;
-    }
-
-    // maximum value
-    Array.prototype.hasMax = function (attrib) {
-        const checker = (o, i) => typeof (o) === 'object' && o[i]
-        return (this.length && this.reduce(function (prev, curr) {
-            const prevOk = checker(prev, attrib);
-            const currOk = checker(curr, attrib);
-            if (!prevOk && !currOk) return {};
-            if (!prevOk) return curr;
-            if (!currOk) return prev;
-            return prev[attrib] > curr[attrib] ? prev : curr;
-        })) || null;
-    }
+    const getMin = (key) => wineData.reduce((minimum, row) => row[key] < minimum[key] ? row : minimum, wineData[0]);
+    const getMax = (key) => wineData.reduce((maximum, row) => row[key] > maximum[key] ? row : maximum, wineData[0]);
 
     // adding minimum and maximum value in usestate variable
-    const [alcohol, setAlcohol] = useState({ min: wineData.hasMin(wineDataKeys[0]), max: wineData.hasMax(wineDataKeys[0]) });
-    const [malicAcid, setMalicAcid] = useState({ min: wineData.hasMin(wineDataKeys[1]), max: wineData.hasMax(wineDataKeys[1]) });
-    const [ash, setAsh] = useState({ min: wineData.hasMin(wineDataKeys[2]), max: wineData.hasMax(wineDataKeys[2]) });
-    const [alcalinity, setAlcalinity] = useState({ min: wineData.hasMin(wineDataKeys[3]), max: wineData.hasMax(wineDataKeys[3]) });
-    const [magnesium, setMagnesium] = useState({ min: wineData.hasMin(wineDataKeys[4]), max: wineData.hasMax(wineDataKeys[4]) });
-    const [totalPhenols, setTotalPhenols] = useState({ min: wineData.hasMin(wineDataKeys[5]), max: wineData.hasMax(wineDataKeys[5]) });
-    const [flavanoids, setFlavanoids] = useState({ min: wineData.hasMin(wineDataKeys[6]), max: wineData.hasMax(wineDataKeys[6]) });
-    const [nonflavanoidPhenols, setNonflavanoidPhenols] = useState({ min: wineData.hasMin(wineDataKeys[7]), max: wineData.hasMax(wineDataKeys[7]) });
-    const [proanthocyanins, setProanthocyanins] = useState({ min: wineData.hasMin(wineDataKeys[8]), max: wineData.hasMax(wineDataKeys[8]) });
-    const [colorIntensity, setColorIntensity] = useState({ min: wineData.hasMin(wineDataKeys[9]), max: wineData.hasMax(wineDataKeys[9]) });
-    const [hue, setHue] = useState({ min: wineData.hasMin(wineDataKeys[10]), max: wineData.hasMax(wineDataKeys[10]) });
-    const [dilutedWines, setDilutedWines] = useState({ min: wineData.hasMin(wineDataKeys[11]), max: wineData.hasMax(wineDataKeys[11]) });
-    const [unknown, setUnknown] = useState({ min: wineData.hasMin(wineDataKeys[12]), max: wineData.hasMax(wineDataKeys[12]) });
+    const [alcohol] = useState({ min: getMin(wineDataKeys[0]), max: getMax(wineDataKeys[0]) });
+    const [malicAcid] = useState({ min: getMin(wineDataKeys[1]), max: getMax(wineDataKeys[1]) });
+    const [ash] = useState({ min: getMin(wineDataKeys[2]), max: getMax(wineDataKeys[2]) });
+    const [alcalinity] = useState({ min: getMin(wineDataKeys[3]), max: getMax(wineDataKeys[3]) });
+    const [magnesium] = useState({ min: getMin(wineDataKeys[4]), max: getMax(wineDataKeys[4]) });
+    const [totalPhenols] = useState({ min: getMin(wineDataKeys[5]), max: getMax(wineDataKeys[5]) });
+    const [flavanoids] = useState({ min: getMin(wineDataKeys[6]), max: getMax(wineDataKeys[6]) });
+    const [nonflavanoidPhenols] = useState({ min: getMin(wineDataKeys[7]), max: getMax(wineDataKeys[7]) });
+    const [proanthocyanins] = useState({ min: getMin(wineDataKeys[8]), max: getMax(wineDataKeys[8]) });
+    const [colorIntensity] = useState({ min: getMin(wineDataKeys[9]), max: getMax(wineDataKeys[9]) });
+    const [hue] = useState({ min: getMin(wineDataKeys[10]), max: getMax(wineDataKeys[10]) });
+    const [dilutedWines] = useState({ min: getMin(wineDataKeys[11]), max: getMax(wineDataKeys[11]) });
+    const [unknown] = useState({ min: getMin(wineDataKeys[12]), max: getMax(wineDataKeys[12]) });
 
     // calculate mean
     const alcoholMeanRef = useRef(null);
@@ -58,7 +34,7 @@ const StatisticalData = ({ wineData, wineDataKeys }) => {
     const dilutedWinesMeanRef = useRef(null);
     const unknownMeanRef = useRef(null);
 
-    let countAll = 0;
+    const countAll = wineData.length;
     useEffect(() => {
         let alcoholMean = 0, malicAcidMean = 0, ashMean = 0, alcalinityMean = 0, magnesiumMean = 0, totalPhenolsMean = 0, flavanoidsMean = 0, nonFlavanoidPhenolsMean = 0,
             proanthocyaninsMean = 0, colorIntensityMean = 0, hueMean = 0, dilutedWinesMean = 0,
@@ -79,7 +55,6 @@ const StatisticalData = ({ wineData, wineDataKeys }) => {
             dilutedWinesMean += item[wineDataKeys[11]];
             unknownMean += item[wineDataKeys[12]];
 
-            ++countAll;
         });
         alcoholMean = parseFloat(alcoholMean) / countAll;
         malicAcidMean = parseFloat(malicAcidMean) / countAll;
@@ -108,7 +83,7 @@ const StatisticalData = ({ wineData, wineDataKeys }) => {
         hueMeanRef.current.innerText = parseFloat(hueMean).toFixed(3);
         dilutedWinesMeanRef.current.innerText = parseFloat(dilutedWinesMean).toFixed(3);
         unknownMeanRef.current.innerText = parseFloat(unknownMean).toFixed(3);
-    });
+    }, [countAll, wineData, wineDataKeys]);
 
     // calculate median
     const alcoholMedianRef = useRef(null);
@@ -125,10 +100,7 @@ const StatisticalData = ({ wineData, wineDataKeys }) => {
     const dilutedWinesMedianRef = useRef(null);
     const unknownMedianRef = useRef(null);
     useEffect(() => {
-        let alcoholMedian = 0, malicAcidMedian = 0, ashMedian = 0, alcalinityMedian = 0, magnesiumMedian = 0, totalPhenolsMedian = 0, flavdianoidsMedian = 0, nonFlavdianoidPhenolsMedian = 0,
-            prodianthocydianinsMedian = 0, colorIntensityMedian = 0, hueMedian = 0, dilutedWinesMedian = 0,
-            unknownMedian = 0;
-        const sort = (index) => wineData.sort(function (a, b) {
+        const sort = (index) => [...wineData].sort(function (a, b) {
             return a[wineDataKeys[index]] - b[wineDataKeys[index]];
         });
         alcoholMedianRef.current.innerText = (sort(0)[countAll / 2][wineDataKeys[0]]).toFixed(3);
@@ -144,7 +116,7 @@ const StatisticalData = ({ wineData, wineDataKeys }) => {
         hueMedianRef.current.innerText = (sort(10)[countAll / 2][wineDataKeys[10]]).toFixed(3);
         dilutedWinesMedianRef.current.innerText = (sort(11)[countAll / 2][wineDataKeys[11]]);
         unknownMedianRef.current.innerText = (sort(12)[countAll / 2][wineDataKeys[12]]).toFixed(3);
-    }, []);
+    }, [countAll, wineData, wineDataKeys]);
 
     // calculate mode
     const alcoholModeRef = useRef(null);
@@ -186,7 +158,7 @@ const StatisticalData = ({ wineData, wineDataKeys }) => {
         hueModeRef.current.innerText = mode(wineData.map(item => item[wineDataKeys[10]])).toFixed(3);
         dilutedWinesModeRef.current.innerText = mode(wineData.map(item => item[wineDataKeys[11]]));
         unknownModeRef.current.innerText = mode(wineData.map(item => item[wineDataKeys[12]])).toFixed(3);
-    }, []);
+    }, [wineData, wineDataKeys]);
 
     return (
         <table>
