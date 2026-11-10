@@ -9,8 +9,10 @@ A React dashboard for exploring a wine dataset through raw records, single-recor
 - Browse the complete raw dataset
 - Inspect individual records with buttons or keyboard navigation
 - Compare minimum, maximum, mean, median, and mode values
-- Review calculated Gamma measures
+- Review Gamma measures calculated as `(Ash × Hue) / Magnesium`
 - Responsive layout with accessible navigation and footer links
+
+For an even number of records, the median is the average of the two center values. Tied modes are all shown; a measure with no repeated values is labeled **No mode**.
 
 ## Tech stack
 

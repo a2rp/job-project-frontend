@@ -7,21 +7,33 @@ import ScrollToTop from "./components/ScrollToTop";
 import SiteFooter from "./components/SiteFooter";
 import SiteHeader from "./components/SiteHeader";
 
+const wineData = data;
+const wineDataKeys = Object.keys(wineData[0]);
+
 function App() {
-    const wineData = data;
-    const wineDataKeys = Object.keys(wineData[0]);
     const [indexValue, setIndexValue] = useState(0);
     const [keyboardEnabled, setKeyboardEnabled] = useState(false);
 
     useEffect(() => {
         const handleKeyDown = (event) => {
-            if (!keyboardEnabled) return;
+            const targetTag = event.target?.tagName;
+            const isEditingField = event.target?.isContentEditable
+                || ["SELECT", "TEXTAREA"].includes(targetTag)
+                || (targetTag === "INPUT" && event.target.type !== "checkbox");
+            if (!keyboardEnabled
+                || event.defaultPrevented
+                || event.altKey
+                || event.ctrlKey
+                || event.metaKey
+                || isEditingField) return;
 
             if (event.key === "ArrowLeft") {
+                event.preventDefault();
                 setIndexValue((previousIndex) => previousIndex <= 0 ? wineData.length - 1 : previousIndex - 1);
             }
 
             if (event.key === "ArrowRight") {
+                event.preventDefault();
                 setIndexValue((previousIndex) => previousIndex >= wineData.length - 1 ? 0 : previousIndex + 1);
             }
         };
@@ -57,15 +69,15 @@ function App() {
                     <legend>Single record</legend>
                     <div className={styles.sectionHint}>Move through the dataset with the buttons or enable the left and right arrow keys.</div>
                     <div className={styles.singleData}>
-                        <div className={styles.indexNumber}>
+                        <div className={styles.indexNumber} aria-live="polite" aria-atomic="true">
                             Record {String(indexValue + 1).padStart(3, "0")} <span>of {wineData.length}</span>
                         </div>
 
                         <div className={styles.tableScroller}>
-                            <table className={styles.singleDataTable}>
+                            <table className={styles.singleDataTable} aria-label="Values for the selected wine record">
                                 <thead>
                                     <tr>
-                                        {wineDataKeys.map((item) => <th key={item}>{item}</th>)}
+                                        {wineDataKeys.map((item) => <th key={item} scope="col">{item}</th>)}
                                     </tr>
                                 </thead>
                                 <tbody>
